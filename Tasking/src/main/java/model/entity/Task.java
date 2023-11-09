@@ -41,4 +41,24 @@ public final class Task implements Taskable {
 		return task_id + ":" + title + ":<" + description + ">:" + status + ":" + due_date;
 	}
 
+	@Override
+	public String getTitle() {
+		return this.title;
+	}
+
+	@Override
+	public String getDescription() {
+		return this.description;
+	}
+
+	@Override
+	public Status getStatus() {
+		return this.status;
+	}
+
+	@Override
+	public LocalDateTime getLocalDateTime() {
+		return this.due_date;
+	}
+
 }

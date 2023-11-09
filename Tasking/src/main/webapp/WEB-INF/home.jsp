@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -64,7 +65,7 @@ https://www.tooplate.com/view/2121-wave-cafe
 						</nav>
 
 						<div id="TODO" class="tm-tab-content">
-							<div class="tm-list">
+							<!-- MODEL 
 								<div class="tm-list-item">
 									<img src="img/iced-americano.png" alt="Image"
 										class="tm-list-item-img">
@@ -77,16 +78,18 @@ https://www.tooplate.com/view/2121-wave-cafe
 											provided by Tooplate.</p>
 									</div>
 								</div>
+								-->
+							<c:forEach var="task" items="${tasks}">
 								<div class="tm-list-item">
-									<div class="tm-black-bg tm-list-item-text"></div>
+									<img src="img/iced-americano.png" alt="Image"
+										class="tm-list-item-img">
+									<div class="tm-black-bg tm-list-item-text">
+										<h3 class="tm-list-item-name">
+											<c:out value="${task.getTitle()}" />
+										</h3>
+									</div>
 								</div>
-								<div class="tm-list-item">
-									<div class="tm-black-bg tm-list-item-text"></div>
-								</div>
-								<div class="tm-list-item">
-									<div class="tm-black-bg tm-list-item-text"></div>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 
 						<div id="DOING" class="tm-tab-content">

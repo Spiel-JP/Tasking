@@ -19,6 +19,14 @@ public interface Taskable {
 		return Task.create(task_id, title, description, status, due_date);
 	}
 
+	String getTitle();
+
+	String getDescription();
+
+	Status getStatus();
+
+	LocalDateTime getLocalDateTime();
+
 	final class NullTask implements Taskable {
 		static Taskable NULL = new NullTask();
 
@@ -28,6 +36,29 @@ public interface Taskable {
 		@Override
 		public String toString() {
 			return "This is NULL";
+		}
+
+		@Override
+		public String getTitle() {
+			return "";
+		}
+
+		@Override
+		public String getDescription() {
+			// TODO 自動生成されたメソッド・スタブ
+			return "";
+		}
+
+		@Override
+		public Status getStatus() {
+			// TODO 自動生成されたメソッド・スタブ
+			return Status.NOTING;
+		}
+
+		@Override
+		public LocalDateTime getLocalDateTime() {
+			// TODO 自動生成されたメソッド・スタブ
+			return LocalDateTime.now();
 		}
 	}
 }
