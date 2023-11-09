@@ -149,7 +149,7 @@ https://www.tooplate.com/view/2121-wave-cafe
 	</div>
 	<footer class="tm-site-footer">
 		<p class="tm-black-bg tm-footer-text">
-			Copyright 2023 TaskManager | Design: <a
+			Copyright 2023 TaskManager | CHDesign: <a
 				href="https://www.yamatozakura.work" class="tm-footer-link"
 				rel="sponsored" target="_parent">Yamatozakura</a>
 		</p>
