@@ -32,19 +32,17 @@ https://www.tooplate.com/view/2121-wave-cafe
 					<nav class="tm-site-nav">
 						<ul class="tm-site-nav-ul">
 							<!-- Main -->
-							<li class="tm-page-nav-item">
-								<a href="#Home" class="tm-page-link active">
-									<i class="fas fa-mug-hot tm-page-link-icon"></i>
-									<span>HOME SCREEN</span>
-								</a>
-							</li>
+							<li class="tm-page-nav-item"><a href="#Home"
+								class="tm-page-link active"> <i
+									class="fas fa-mug-hot tm-page-link-icon"></i> <span>HOME
+										SCREEN</span>
+							</a></li>
 							<!-- To Home  -->
-							<li class="tm-page-nav-item">
-								<a href="#Creat" class="tm-page-link">
-									<i class="fas fa-users tm-page-link-icon"></i>
-									<span>CREAT NEW TASK</span>
-								</a>
-							</li>
+							<li class="tm-page-nav-item"><a href="#Creat"
+								class="tm-page-link"> <i
+									class="fas fa-users tm-page-link-icon"></i> <span>CREAT
+										NEW TASK</span>
+							</a></li>
 						</ul>
 					</nav>
 				</div>
@@ -56,8 +54,8 @@ https://www.tooplate.com/view/2121-wave-cafe
 					<div id="Home" class="tm-page-content">
 						<nav class="tm-black-bg tm-drinks-nav">
 							<ul>
-								<li><a href="#TODO" class="tm-tab-link active" data-id="TODO">TODO</a>
-								</li>
+								<li><a href="#TODO" class="tm-tab-link active"
+									data-id="TODO">TODO</a></li>
 								<li><a href="#DOING" class="tm-tab-link" data-id="DOING">DOING</a>
 								</li>
 								<li><a href="#DONE" class="tm-tab-link" data-id="DONE">DONE</a>
@@ -123,7 +121,7 @@ https://www.tooplate.com/view/2121-wave-cafe
 							</div>
 						</div>
 					</div>
-						<!--
+					<!--
 						<div class="tm-black-bg tm-mb-20 tm-about-box-1">
 							<h2 class="tm-text-primary tm-about-header">About
 								TaskManager?</h2>
@@ -137,12 +135,12 @@ https://www.tooplate.com/view/2121-wave-cafe
 							</div>
 						</div>
 						-->
-					</div>
-					<!-- end This Home Page -->
+			</div>
+			<!-- end This Home Page -->
 
-					<!-- Creat New Task -->
-					<div id="Creat" class="tm-page-content">
-					<!-- end Drink Menu Page -->
+			<!-- Creat New Task -->
+			<div id="Creat" class="tm-page-content">
+				<!-- end Drink Menu Page -->
 			</div>
 			</main>
 		</div>
