@@ -32,16 +32,19 @@ https://www.tooplate.com/view/2121-wave-cafe
 					<nav class="tm-site-nav">
 						<ul class="tm-site-nav-ul">
 							<!-- Main -->
-							<li class="tm-page-nav-item"><a href="#about"
-								class="tm-page-link active"> <i
-									class="fas fa-mug-hot tm-page-link-icon"></i> <span>About
-										This</span>
-							</a></li>
+							<li class="tm-page-nav-item">
+								<a href="#Home" class="tm-page-link active">
+									<i class="fas fa-mug-hot tm-page-link-icon"></i>
+									<span>HOME SCREEN</span>
+								</a>
+							</li>
 							<!-- To Home  -->
-							<li class="tm-page-nav-item"><a href="#Task"
-								class="tm-page-link"> <i
-									class="fas fa-users tm-page-link-icon"></i> <span>GO HOME!</span>
-							</a></li>
+							<li class="tm-page-nav-item">
+								<a href="#Creat" class="tm-page-link">
+									<i class="fas fa-users tm-page-link-icon"></i>
+									<span>CREAT NEW TASK</span>
+								</a>
+							</li>
 						</ul>
 					</nav>
 				</div>
@@ -49,26 +52,8 @@ https://www.tooplate.com/view/2121-wave-cafe
 
 			<div class="tm-right">
 				<main class="tm-main">
-					<!-- About This Page -->
-					<div id="about" class="tm-page-content">
-						<div class="tm-black-bg tm-mb-20 tm-about-box-1">
-							<h2 class="tm-text-primary tm-about-header">About
-								TaskManager?</h2>
-							<div class="tm-list-item tm-list-item-2">
-								<img src="img/about-1.png" alt="Image"
-									class="tm-list-item-img tm-list-item-img-big">
-								<div class="tm-list-item-text-2">
-									<p>このアプリケーションは、自分自身の業務について明確な管理を行うことができます。</p>
-									<p>ぜひHOMEリンクを押して、タスク管理アプリを起動してください！</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- end About Us Page -->
-
-					<!-- TaskManagerAppHome -->
-					<div id="Task" class="tm-page-content">
-
+					<!-- This Home Page -->
+					<div id="Home" class="tm-page-content">
 						<nav class="tm-black-bg tm-drinks-nav">
 							<ul>
 								<li><a href="#TODO" class="tm-tab-link active" data-id="TODO">TODO</a>
@@ -138,6 +123,25 @@ https://www.tooplate.com/view/2121-wave-cafe
 							</div>
 						</div>
 					</div>
+						<!--
+						<div class="tm-black-bg tm-mb-20 tm-about-box-1">
+							<h2 class="tm-text-primary tm-about-header">About
+								TaskManager?</h2>
+							<div class="tm-list-item tm-list-item-2">
+								<img src="img/about-1.png" alt="Image"
+									class="tm-list-item-img tm-list-item-img-big">
+								<div class="tm-list-item-text-2">
+									<p>このアプリケーションは、自分自身の業務について明確な管理を行うことができます。</p>
+									<p>ぜひHOMEリンクを押して、タスク管理アプリを起動してください！</p>
+								</div>
+							</div>
+						</div>
+						-->
+					</div>
+					<!-- end This Home Page -->
+
+					<!-- Creat New Task -->
+					<div id="Creat" class="tm-page-content">
 					<!-- end Drink Menu Page -->
 			</div>
 			</main>
