@@ -28,8 +28,8 @@ public final class Tasks implements TasksIF {
 	//IndexNumber
 	@Override
 	public Taskable get(int index) {
-		if(list.size()-1<index||index<0) {
-			return Taskable.of(0, null, null, null, null); 
+		if (list.size() - 1 < index || index < 0) {
+			return Taskable.of(0, null, null, null, null);
 		}
 		return list.get(index);
 	}
@@ -57,6 +57,11 @@ public final class Tasks implements TasksIF {
 	@Override
 	public Iterator<Taskable> iterator() {
 		return list.iterator();
+	}
+
+	@Override
+	public List<Taskable> toList() {
+		return new ArrayList<>(list);
 	}
 
 }
