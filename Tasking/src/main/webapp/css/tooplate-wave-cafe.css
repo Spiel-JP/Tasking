@@ -37,6 +37,15 @@ p {
 
 h2 { margin-top: 0; }
 
+.input-space{
+    background-color: #1E5050;
+    align-items: center;
+}
+
+.input-item{
+    text-align: center;
+}
+
 #tm-video {
     position: fixed;
     right: 0;
