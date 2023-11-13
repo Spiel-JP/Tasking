@@ -3,6 +3,8 @@ package model.entity;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import model.IF.Taskable;
 import model.IF.TasksIF;
@@ -13,6 +15,10 @@ public final class Tasks implements TasksIF {
 
 	public Tasks() {
 		list = new ArrayList<>();
+	}
+
+	private Tasks(Stream<Taskable> stream) {
+		list = stream.collect(Collectors.toList());
 	}
 
 	@Override
@@ -59,9 +65,12 @@ public final class Tasks implements TasksIF {
 		return list.iterator();
 	}
 
-	@Override
-	public List<Taskable> toList() {
-		return new ArrayList<>(list);
+	private Tasks fillter(Status status) {
+		return new Tasks(list.stream().filter(t -> t.getStatus() == status));
+	}
+
+	public List<Taskable> toList(Status status) {
+		return new ArrayList<>(fillter(status).list);
 	}
 
 }

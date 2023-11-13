@@ -1,7 +1,5 @@
 package model.IF;
 
-import java.util.List;
-
 public interface TasksIF extends Iterable<Taskable> {
 
 	void add(Taskable element);
@@ -15,7 +13,5 @@ public interface TasksIF extends Iterable<Taskable> {
 	boolean isEmpty();
 
 	int size();
-
-	List<Taskable> toList();
 
 }

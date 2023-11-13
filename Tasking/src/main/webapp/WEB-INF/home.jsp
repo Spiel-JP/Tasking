@@ -79,65 +79,67 @@ https://www.tooplate.com/view/2121-wave-cafe
 									</div>
 								</div>
 								-->
-							<c:forEach var="task" items="${tasks}">
+							<c:forEach var="task" items="${todoTasks}">
 								<div class="tm-list-item">
 									<img src="img/iced-americano.png" alt="Image"
 										class="tm-list-item-img">
 									<div class="tm-black-bg tm-list-item-text">
 										<h3 class="tm-list-item-name">
 											<c:out value="${task.getTitle()}" />
+											<span class="tm-list-item-price"> <c:out
+													value="${task.getLocalDateTime().toString()}" />
+											</span>
 										</h3>
+										<p class="tm-list-item-description">
+											<c:out value="${task.getDescription()}" />
+										</p>
 									</div>
 								</div>
 							</c:forEach>
 						</div>
 
 						<div id="DOING" class="tm-tab-content">
-							<div class="tm-list">
-								<div class="tm-list-item"></div>
-							</div>
-							<div class="tm-list-item">
-								<div class="tm-black-bg tm-list-item-text"></div>
-							</div>
-							<div class="tm-list-item">
-								<div class="tm-black-bg tm-list-item-text"></div>
-							</div>
-							<div class="tm-list-item">
-								<div class="tm-black-bg tm-list-item-text"></div>
-							</div>
-						</div>
-					</div>
-
-					<div id="DONE" class="tm-tab-content">
-						<div class="tm-list">
-							<div class="tm-list-item">
-								<div class="tm-black-bg tm-list-item-text"></div>
-							</div>
-							<div class="tm-list-item">
-								<div class="tm-black-bg tm-list-item-text"></div>
-							</div>
-							<div class="tm-list-item">
-								<div class="tm-black-bg tm-list-item-text"></div>
-							</div>
-							<div class="tm-list-item">
-								<div class="tm-black-bg tm-list-item-text"></div>
-							</div>
-						</div>
-					</div>
-					<!--
-						<div class="tm-black-bg tm-mb-20 tm-about-box-1">
-							<h2 class="tm-text-primary tm-about-header">About
-								TaskManager?</h2>
-							<div class="tm-list-item tm-list-item-2">
-								<img src="img/about-1.png" alt="Image"
-									class="tm-list-item-img tm-list-item-img-big">
-								<div class="tm-list-item-text-2">
-									<p>このアプリケーションは、自分自身の業務について明確な管理を行うことができます。</p>
-									<p>ぜひHOMEリンクを押して、タスク管理アプリを起動してください！</p>
+							<c:forEach var="task" items="${doingTasks}">
+								<div class="tm-list-item">
+									<img src="img/iced-americano.png" alt="Image"
+										class="tm-list-item-img">
+									<div class="tm-black-bg tm-list-item-text">
+										<h3 class="tm-list-item-name">
+											<c:out value="${task.getTitle()}" />
+											<span class="tm-list-item-price"> <c:out
+													value="${task.getLocalDateTime().toString()}" />
+											</span>
+										</h3>
+										<p class="tm-list-item-description">
+											<c:out value="${task.getDescription()}" />
+										</p>
+									</div>
 								</div>
-							</div>
+							</c:forEach>
 						</div>
-						-->
+
+
+						<div id="DONE" class="tm-tab-content">
+							<c:forEach var="task" items="${doneTasks}">
+								<div class="tm-list-item">
+									<img src="img/iced-americano.png" alt="Image"
+										class="tm-list-item-img">
+									<div class="tm-black-bg tm-list-item-text">
+										<h3 class="tm-list-item-name">
+											<c:out value="${task.getTitle()}" />
+											<span class="tm-list-item-price"> <c:out
+													value="${task.getLocalDateTime().toString()}" />
+											</span>
+										</h3>
+										<p class="tm-list-item-description">
+											<c:out value="${task.getDescription()}" />
+										</p>
+									</div>
+								</div>
+							</c:forEach>
+						</div>
+					</div>
+				</main>
 			</div>
 			<!-- end This Home Page -->
 
@@ -145,7 +147,6 @@ https://www.tooplate.com/view/2121-wave-cafe
 			<div id="Creat" class="tm-page-content">
 				<!-- end Drink Menu Page -->
 			</div>
-			</main>
 		</div>
 	</div>
 	<footer class="tm-site-footer">

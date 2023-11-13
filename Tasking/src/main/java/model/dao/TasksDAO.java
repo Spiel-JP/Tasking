@@ -16,11 +16,11 @@ import model.entity.Tasks;
 public final class TasksDAO implements DaoIF {
 
 	@Override
-	public TasksIF fetchAll() {
+	public Tasks fetchAll() {
 
 		DaoIF.readJDBCDriver();
 
-		TasksIF tasks = new Tasks();
+		Tasks tasks = new Tasks();
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
 			String aql = "SELECT * FROM projitsu3.task;";
 
