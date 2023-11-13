@@ -65,12 +65,12 @@ public final class Tasks implements TasksIF {
 		return list.iterator();
 	}
 
-	private Tasks fillter(Status status) {
+	public Tasks fillter(Status status) {
 		return new Tasks(list.stream().filter(t -> t.getStatus() == status));
 	}
 
-	public List<Taskable> toList(Status status) {
-		return new ArrayList<>(fillter(status).list);
+	public List<Taskable> toList() {
+		return list;
 	}
 
 }

@@ -35,9 +35,9 @@ public class HomeServlet extends HttpServlet {
 		//SELECT一覧
 		Tasks dao = new TasksDAO().fetchAll();
 		//ステータスごとにフィルタリング→Listへ変更
-		request.setAttribute("todoTasks", dao.toList(Status.TODO));
-		request.setAttribute("doingTasks", dao.toList(Status.DOING));
-		request.setAttribute("doneTasks", dao.toList(Status.DONE));
+		request.setAttribute("todoTasks", dao.fillter(Status.TODO).toList());
+		request.setAttribute("doingTasks", dao.fillter(Status.DOING).toList());
+		request.setAttribute("doneTasks", dao.fillter(Status.DONE).toList());
 
 		request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 	}
