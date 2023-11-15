@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import model.IF.DaoIF;
@@ -36,7 +37,7 @@ public final class TasksDAO implements DaoIF {
 				//説明
 				String description = rs.getString("DESCRIPTION");
 				//ステータス
-				Status status = Status.StringToStatus(rs.getString("STATUS"));
+				Status status = Status.stringToStatus(rs.getString("STATUS"));
 				//期限日
 				LocalDateTime duedate = rs.getTimestamp("DUE_DATE").toLocalDateTime();
 
@@ -52,6 +53,39 @@ public final class TasksDAO implements DaoIF {
 	@Override
 	public TasksIF fetchById(long id) {
 		return null;
+	}
+
+	/*
+	 * return 0 →エラー
+	 * return 1 →正常
+	 */
+
+	@Override
+	public int append(Taskable entity) {
+		if (entity.isNULL()) {
+			return 0;
+		}
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			//タイトル
+			String title = entity.getTitle();
+			//ステータス
+			String status = entity.getStatus().getStatus();
+			//期限日
+			LocalDateTime due_date = entity.getLocalDateTime();
+			//説明
+			String description = entity.getDescription();
+
+			String sql = "INSERT INTO projitsu3.task VALUES (?,?,?,?)";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, title);
+			ps.setString(2, status);
+			ps.setTimestamp(3, Timestamp.valueOf(due_date));
+			ps.setNString(4, description);
+			return ps.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 0;
 	}
 
 }

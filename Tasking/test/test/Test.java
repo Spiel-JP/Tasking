@@ -27,5 +27,7 @@ public class Test {
 			System.out.println(t);
 		}
 		
+		System.out.println(Status.stringToStatus("Null"));
+		
 	}
 }

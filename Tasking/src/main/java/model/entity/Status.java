@@ -1,15 +1,13 @@
 package model.entity;
 
-import java.util.Arrays;
-
 public enum Status {
 	TODO(3, "TODO"), //
 	DOING(2, "DOING"), //
 	DONE(1, "DONE"), //
 	NOTING(0, "NULL");
 
-	int weight;
-	String status;
+	private final int weight;
+	private final String status;
 
 	private Status(int weight, String status) {
 		this.weight = weight;
@@ -20,14 +18,14 @@ public enum Status {
 		return weight;
 	}
 
-	public static Status StringToStatus(String str) {
+	public static Status stringToStatus(String str) {
 		if (str == null || str.equals(NOTING.status)) {
 			return NOTING;
 		}
-		if(!TODO.status.equals(str)&&!DOING.status.equals(str)&&!DONE.status.equals(str)) {
+		if (!TODO.status.equals(str) && !DOING.status.equals(str) && !DONE.status.equals(str)) {
 			return NOTING;
 		}
-		return Arrays.asList(Status.values()).stream().filter(status -> str.equals(status.status)).findFirst().get();
+		return Status.valueOf(str);
 	}
 
 	public String getStatus() {
