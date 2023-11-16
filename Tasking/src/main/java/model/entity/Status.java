@@ -1,10 +1,10 @@
 package model.entity;
 
 public enum Status {
-	TODO(3, "TODO"), //
+	TODO(1, "TODO"), //
 	DOING(2, "DOING"), //
-	DONE(1, "DONE"), //
-	NOTING(0, "NULL");
+	DONE(3, "DONE"), //
+	NOTING(4, "NULL");
 
 	private final int weight;
 	private final String status;

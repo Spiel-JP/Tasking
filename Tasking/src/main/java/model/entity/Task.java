@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import model.IF.Taskable;
 
 public final class Task implements Taskable {
-	private final long task_id;
+	private final User user_id;
 	private final String title;
 	private final String description;
 	private final Status status;
 	private final LocalDateTime due_date;
 
-	public static Taskable create(long task_id, String title, String description, Status status,
+	public static Taskable create(User name, String title, String description, Status status,
 			LocalDateTime due_date) {
 		if (title == null) {
 			title = "";
@@ -22,14 +22,14 @@ public final class Task implements Taskable {
 		}
 
 		//creat条件クリア
-		if (task_id > 0 && due_date != null && status != null) {
-			return new Task(task_id, title, description, status, due_date);
+		if (name > 0 && due_date != null && status != null) {
+			return new Task(name, title, description, status, due_date);
 		}
-		return Taskable.of(task_id, title, description, status, due_date);
+		return Taskable.of(name, title, description, status, due_date);
 	}
 
-	private Task(long task_id, String title, String description, Status status, LocalDateTime due_date) {
-		this.task_id = task_id;
+	private Task(long user_id, String title, String description, Status status, LocalDateTime due_date) {
+		this.user_id = user_id;
 		this.title = title;
 		this.description = description;
 		this.status = status;
@@ -38,7 +38,7 @@ public final class Task implements Taskable {
 
 	@Override
 	public String toString() {
-		return task_id + ":" + title + ":<" + description + ">:" + status + ":" + due_date;
+		return user_id + ":" + title + ":<" + description + ">:" + status + ":" + due_date;
 	}
 
 	@Override
