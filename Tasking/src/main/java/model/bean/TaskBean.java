@@ -1,30 +1,27 @@
 package model.bean;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
 import lombok.Getter;
-import model.entity.Status;
-import model.entity.Task;
 
 @Getter
 public final class TaskBean {
-	private final long task_id;
+	private final long id;
+	private final long user_id;
 	private final String title;
 	private final String description;
-	private final Status status;
-	private final LocalDateTime due_date;
+	private final int status_id;
+	private final String due_date;
 
-	TaskBean(long task_id, String title, String description, Status status, LocalDateTime due_date) {
-		this.task_id = task_id;
+	public static TaskBean create(long task_id, long user_id, String title, String description, int status_id,
+			String due_date) {
+		return new TaskBean(task_id, user_id, title, description, status_id, due_date);
+	}
+
+	private TaskBean(long task_id, long user_id, String title, String description, int status_id, String due_date) {
+		this.id = task_id;
+		this.user_id = user_id;
 		this.title = title;
 		this.description = description;
-		this.status = status;
+		this.status_id = status_id;
 		this.due_date = due_date;
 	}
-
-	public List<Task> getList() {
-		return null;
-	}
-
 }
