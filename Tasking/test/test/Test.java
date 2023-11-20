@@ -19,15 +19,15 @@ public class Test {
 
 		TasksDAO dao = new TasksDAO();
 
-		TasksIF ddd=dao.fetchAll();
+		TasksIF ddd = dao.fetchAll();
 		ddd.add(task);
 		ddd.add(task2);
-		ddd.add(Task.create(0, null, null, null, null));
+		ddd.add(Task.create(0L, null, null, null, null));
 		for (Taskable t : ddd) {
 			System.out.println(t);
 		}
-		
+
 		System.out.println(Status.stringToStatus("Null"));
-		
+
 	}
 }

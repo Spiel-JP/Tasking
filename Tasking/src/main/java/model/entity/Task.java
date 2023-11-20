@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import model.IF.Taskable;
 
 public final class Task implements Taskable {
-	private final User user_id;
+	private final long user_id;
 	private final String title;
 	private final String description;
 	private final Status status;
 	private final LocalDateTime due_date;
 
-	public static Taskable create(User name, String title, String description, Status status,
+	public static Taskable create(long user_id, String title, String description, Status status,
 			LocalDateTime due_date) {
 		if (title == null) {
 			title = "";
@@ -22,10 +22,10 @@ public final class Task implements Taskable {
 		}
 
 		//creat条件クリア
-		if (name > 0 && due_date != null && status != null) {
-			return new Task(name, title, description, status, due_date);
+		if (user_id > 0 && due_date != null && status != null) {
+			return new Task(user_id, title, description, status, due_date);
 		}
-		return Taskable.of(name, title, description, status, due_date);
+		return Taskable.of(user_id, title, description, status, due_date);
 	}
 
 	private Task(long user_id, String title, String description, Status status, LocalDateTime due_date) {
