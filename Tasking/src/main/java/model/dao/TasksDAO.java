@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -14,7 +15,7 @@ import model.IF.TasksIF;
 import model.entity.Status;
 import model.entity.Tasks;
 
-public final class TasksDAO implements DaoIF {
+public final class TasksDAO implements DaoIF, Serializable {
 
 	@Override
 	public Tasks fetchAll() {
@@ -23,15 +24,17 @@ public final class TasksDAO implements DaoIF {
 
 		Tasks tasks = new Tasks();
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			String aql = "SELECT * FROM projitsu3.task;";
+			String aql = "select projitsu3.task.PKEYTASK_ID as ID,projitsu3.user.NAME as USER,projitsu3.task.TITLE as TITLE,projitsu3.task.DESCRIPTION as DESCRIPTION,projitsu3.status.STATUS as STATUS,task.DUE_DATE as DUE_DATE from projitsu3.task "
+					+ "left join projitsu3.user on projitsu3.task.FKEYUSER_ID=projitsu3.user.PKEYUSER_ID "
+					+ "left join projitsu3.status on projitsu3.task.STATUS_ID=projitsu3.status.PKEYSTATUS_ID;";
 
 			//SELECTを実行
 			PreparedStatement pStmt = conn.prepareStatement(aql);
 			ResultSet rs = pStmt.executeQuery();
 
 			while (rs.next()) {
-				//タスクID
-				long pkeyTaskId = rs.getLong("PKEYTASK_ID");
+				//userID
+				String name = rs.getString("USER");
 				//タイトル
 				String titke = rs.getString("TITLE");
 				//説明
@@ -41,7 +44,7 @@ public final class TasksDAO implements DaoIF {
 				//期限日
 				LocalDateTime duedate = rs.getTimestamp("DUE_DATE").toLocalDateTime();
 
-				tasks.add(Taskable.of(pkeyTaskId, titke, description, status, duedate));
+				tasks.add(Taskable.of(name, titke, description, status, duedate));
 			}
 
 		} catch (SQLException e) {

@@ -11,13 +11,15 @@ public interface Taskable {
 		return this == NullTask.NULL;
 	}
 
-	static Taskable of(long task_id, String title, String description, Status status, LocalDateTime due_date) {
-		if (task_id <= 0 || due_date == null || status == null) {
+	static Taskable of(String name, String title, String description, Status status, LocalDateTime due_date) {
+		if (name == null || title == null || description == null || status == null || due_date == null) {
 			return NullTask.NULL;
 		}
 
-		return Task.create(task_id, title, description, status, due_date);
+		return Task.create(name, title, description, status, due_date);
 	}
+
+	String getName();
 
 	String getTitle();
 
@@ -36,6 +38,12 @@ public interface Taskable {
 		@Override
 		public String toString() {
 			return "This is NULL";
+		}
+
+		@Override
+		public String getName() {
+			// TODO 自動生成されたメソッド・スタブ
+			return "";
 		}
 
 		@Override
@@ -58,7 +66,7 @@ public interface Taskable {
 		@Override
 		public LocalDateTime getLocalDateTime() {
 			// TODO 自動生成されたメソッド・スタブ
-			return LocalDateTime.now();
+			return LocalDateTime.MAX;
 		}
 	}
 }

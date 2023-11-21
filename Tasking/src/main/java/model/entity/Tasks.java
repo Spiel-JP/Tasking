@@ -35,7 +35,7 @@ public final class Tasks implements TasksIF {
 	@Override
 	public Taskable get(int index) {
 		if (list.size() - 1 < index || index < 0) {
-			return Taskable.of(0, null, null, null, null);
+			return Taskable.of(null, null, null, null, null);
 		}
 		return list.get(index);
 	}
@@ -43,9 +43,9 @@ public final class Tasks implements TasksIF {
 	//ObjectNumber
 	@Override
 	public Taskable get(Taskable object) {
-		if (list.contains(object)) {
+		if (!list.contains(object)) {
 			//NullTask呼び出し
-			return Taskable.of(0, null, null, null, null);
+			return Taskable.of(null, null, null, null, null);
 		}
 		return list.stream().filter(t -> t == object).findFirst().get();
 	}

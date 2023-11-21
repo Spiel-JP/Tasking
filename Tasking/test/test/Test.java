@@ -12,17 +12,17 @@ import model.entity.Task;
 public class Test {
 	public static void main(String[] args) {
 
-		Taskable task = Taskable.of(1, null, "this is testsample", Status.TODO,
+		Taskable task = Taskable.of("root", null, "this is testsample", Status.TODO,
 				LocalDateTime.of(2021, Month.JULY, 3, 10, 30));
 
-		Taskable task2 = Taskable.of(-1, "", null, Status.TODO, LocalDateTime.of(2021, Month.JULY, 3, 10, 30));
+		Taskable task2 = Taskable.of(null, "", null, Status.TODO, LocalDateTime.of(2021, Month.JULY, 3, 10, 30));
 
 		TasksDAO dao = new TasksDAO();
 
 		TasksIF ddd = dao.fetchAll();
 		ddd.add(task);
 		ddd.add(task2);
-		ddd.add(Task.create(0L, null, null, null, null));
+		ddd.add(Task.create(null, null, null, null, null));
 		for (Taskable t : ddd) {
 			System.out.println(t);
 		}

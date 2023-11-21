@@ -165,6 +165,8 @@ https://www.tooplate.com/view/2121-wave-cafe
 							<label for="descriptionlabel">説明</label>
 							<textarea name="description" id="descriptionlabel" placeholder="100文字以内で"></textarea>
 						</div>
+						
+						<input type="submit" value="新規作成">
 					</div>
 				</form>
 				<!-- end Drink Menu Page -->

@@ -5,31 +5,23 @@ import java.time.LocalDateTime;
 import model.IF.Taskable;
 
 public final class Task implements Taskable {
-	private final long user_id;
+	private final String name;
 	private final String title;
 	private final String description;
 	private final Status status;
 	private final LocalDateTime due_date;
 
-	public static Taskable create(long user_id, String title, String description, Status status,
+	public static Taskable create(String name, String title, String description, Status status,
 			LocalDateTime due_date) {
-		if (title == null) {
-			title = "";
-		}
-
-		if (description == null) {
-			description = "";
-		}
-
 		//creat条件クリア
-		if (user_id > 0 && due_date != null && status != null) {
-			return new Task(user_id, title, description, status, due_date);
+		if (name != null && title != null && description != null && status != null && due_date != null) {
+			return new Task(name, title, description, status, due_date);
 		}
-		return Taskable.of(user_id, title, description, status, due_date);
+		return Taskable.of(name, title, description, status, due_date);
 	}
 
-	private Task(long user_id, String title, String description, Status status, LocalDateTime due_date) {
-		this.user_id = user_id;
+	private Task(String name, String title, String description, Status status, LocalDateTime due_date) {
+		this.name = name;
 		this.title = title;
 		this.description = description;
 		this.status = status;
@@ -38,7 +30,12 @@ public final class Task implements Taskable {
 
 	@Override
 	public String toString() {
-		return user_id + ":" + title + ":<" + description + ">:" + status + ":" + due_date;
+		return name + ":" + title + ":<" + description + ">:" + status + ":" + due_date;
+	}
+
+	@Override
+	public String getName() {
+		return this.name;
 	}
 
 	@Override
