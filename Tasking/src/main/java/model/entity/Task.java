@@ -2,26 +2,29 @@ package model.entity;
 
 import java.time.LocalDateTime;
 
+import model.IF.EntityIF;
 import model.IF.Taskable;
 
 public final class Task implements Taskable {
-	private final String name;
+	private final long id;
+	private final User user;
 	private final String title;
 	private final String description;
 	private final Status status;
 	private final LocalDateTime due_date;
 
-	public static Taskable create(String name, String title, String description, Status status,
+	public static Taskable create(long id, User user, String title, String description, Status status,
 			LocalDateTime due_date) {
 		//creat条件クリア
-		if (name != null && title != null && description != null && status != null && due_date != null) {
-			return new Task(name, title, description, status, due_date);
+		if (id > 0 && user != null && title != null && description != null && status != null && due_date != null) {
+			return new Task(id, user, title, description, status, due_date);
 		}
-		return Taskable.of(name, title, description, status, due_date);
+		return Taskable.of(id, user, title, description, status, due_date);
 	}
 
-	private Task(String name, String title, String description, Status status, LocalDateTime due_date) {
-		this.name = name;
+	private Task(long id, User user, String title, String description, Status status, LocalDateTime due_date) {
+		this.id = id;
+		this.user = user;
 		this.title = title;
 		this.description = description;
 		this.status = status;
@@ -30,12 +33,17 @@ public final class Task implements Taskable {
 
 	@Override
 	public String toString() {
-		return name + ":" + title + ":<" + description + ">:" + status + ":" + due_date;
+		return ":" + title + ":<" + description + ">:" + status + ":" + due_date;
 	}
 
 	@Override
-	public String getName() {
-		return this.name;
+	public long getId() {
+		return this.id;
+	}
+
+	@Override
+	public User getUser() {
+		return this.user;
 	}
 
 	@Override
@@ -56,6 +64,11 @@ public final class Task implements Taskable {
 	@Override
 	public LocalDateTime getLocalDateTime() {
 		return this.due_date;
+	}
+
+	@Override
+	public boolean isNull(EntityIF e) {
+		return false;
 	}
 
 }

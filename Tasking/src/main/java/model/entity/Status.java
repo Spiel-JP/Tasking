@@ -1,5 +1,10 @@
 package model.entity;
 
+import java.util.List;
+
+import lombok.Getter;
+
+@Getter
 public enum Status {
 	TODO(1, "TODO"), //
 	DOING(2, "DOING"), //
@@ -14,21 +19,14 @@ public enum Status {
 		this.status = status;
 	}
 
-	public int getWeight() {
-		return weight;
+	public static Status numberToStatus(int num) {
+		return List.of(Status.values()).stream().filter(t -> t.weight == num).findFirst().orElse(NOTING);
 	}
 
 	public static Status stringToStatus(String str) {
-		if (str == null || str.equals(NOTING.status)) {
+		if (str == null) {
 			return NOTING;
 		}
-		if (!TODO.status.equals(str) && !DOING.status.equals(str) && !DONE.status.equals(str)) {
-			return NOTING;
-		}
-		return Status.valueOf(str);
-	}
-
-	public String getStatus() {
-		return status;
+		return List.of(Status.values()).stream().filter(t -> t.status == str).findFirst().orElse(NOTING);
 	}
 }

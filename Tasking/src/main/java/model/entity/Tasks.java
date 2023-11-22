@@ -6,10 +6,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import model.IF.EntitiesIF;
 import model.IF.Taskable;
-import model.IF.TasksIF;
 
-public final class Tasks implements TasksIF {
+public final class Tasks implements EntitiesIF, Iterable<Taskable> {
 
 	private final List<Taskable> list;
 
@@ -21,41 +21,35 @@ public final class Tasks implements TasksIF {
 		list = stream.collect(Collectors.toList());
 	}
 
-	@Override
 	public void add(Taskable element) {
 		list.add(element);
 	}
 
-	@Override
 	public void add(int index, Taskable element) {
 		list.add(index, element);
 	}
 
 	//IndexNumber
-	@Override
 	public Taskable get(int index) {
 		if (list.size() - 1 < index || index < 0) {
-			return Taskable.of(null, null, null, null, null);
+			return Taskable.of(-1, null, null, null, null, null);
 		}
 		return list.get(index);
 	}
 
 	//ObjectNumber
-	@Override
 	public Taskable get(Taskable object) {
 		if (!list.contains(object)) {
 			//NullTask呼び出し
-			return Taskable.of(null, null, null, null, null);
+			return Taskable.of(-1, null, null, null, null, null);
 		}
 		return list.stream().filter(t -> t == object).findFirst().get();
 	}
 
-	@Override
 	public boolean isEmpty() {
 		return size() == 0;
 	}
 
-	@Override
 	public int size() {
 		return list.size();
 	}

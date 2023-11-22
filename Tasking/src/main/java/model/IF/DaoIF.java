@@ -18,10 +18,6 @@ public interface DaoIF {
 		}
 	}
 
-	TasksIF fetchAll();
-
-	TasksIF fetchById(long id);
-
-	int append(Taskable entity);
+	EntitiesIF fetchAll();
 
 }

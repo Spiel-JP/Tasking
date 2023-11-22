@@ -4,25 +4,25 @@ import java.time.LocalDateTime;
 import java.time.Month;
 
 import model.IF.Taskable;
-import model.IF.TasksIF;
 import model.dao.TasksDAO;
 import model.entity.Status;
 import model.entity.Task;
+import model.entity.Tasks;
 
 public class Test {
 	public static void main(String[] args) {
 
-		Taskable task = Taskable.of("root", null, "this is testsample", Status.TODO,
+		Taskable task = Taskable.of(-1, null, null, "this is testsample", Status.TODO,
 				LocalDateTime.of(2021, Month.JULY, 3, 10, 30));
 
-		Taskable task2 = Taskable.of(null, "", null, Status.TODO, LocalDateTime.of(2021, Month.JULY, 3, 10, 30));
+		Taskable task2 = Taskable.of(-1, null, "", null, Status.TODO, LocalDateTime.of(2021, Month.JULY, 3, 10, 30));
 
 		TasksDAO dao = new TasksDAO();
 
-		TasksIF ddd = dao.fetchAll();
+		Tasks ddd = dao.fetchAll();
 		ddd.add(task);
 		ddd.add(task2);
-		ddd.add(Task.create(null, null, null, null, null));
+		ddd.add(Task.create(-1, null, null, null, null, null));
 		for (Taskable t : ddd) {
 			System.out.println(t);
 		}

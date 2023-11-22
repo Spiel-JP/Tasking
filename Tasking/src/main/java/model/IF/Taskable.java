@@ -4,22 +4,25 @@ import java.time.LocalDateTime;
 
 import model.entity.Status;
 import model.entity.Task;
+import model.entity.User;
 
-public interface Taskable {
+public interface Taskable extends EntityIF {
 
 	default boolean isNULL() {
 		return this == NullTask.NULL;
 	}
 
-	static Taskable of(String name, String title, String description, Status status, LocalDateTime due_date) {
-		if (name == null || title == null || description == null || status == null || due_date == null) {
+	static Taskable of(long id, User user, String title, String description, Status status, LocalDateTime due_date) {
+		if (id < 0 || user == null || title == null || description == null || status == null || due_date == null) {
 			return NullTask.NULL;
 		}
 
-		return Task.create(name, title, description, status, due_date);
+		return Task.create(id, user, title, description, status, due_date);
 	}
 
-	String getName();
+	long getId();
+
+	User getUser();
 
 	String getTitle();
 
@@ -41,13 +44,20 @@ public interface Taskable {
 		}
 
 		@Override
-		public String getName() {
+		public long getId() {
 			// TODO 自動生成されたメソッド・スタブ
-			return "";
+			return -1;
+		}
+
+		@Override
+		public User getUser() {
+			// TODO 自動生成されたメソッド・スタブ
+			return User.DUMMY;
 		}
 
 		@Override
 		public String getTitle() {
+			// TODO 自動生成されたメソッド・スタブ
 			return "";
 		}
 
@@ -67,6 +77,11 @@ public interface Taskable {
 		public LocalDateTime getLocalDateTime() {
 			// TODO 自動生成されたメソッド・スタブ
 			return LocalDateTime.MAX;
+		}
+
+		@Override
+		public boolean isNull(EntityIF e) {
+			return this == e;
 		}
 	}
 }
