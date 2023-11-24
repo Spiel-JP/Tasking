@@ -42,6 +42,10 @@ public class Users implements EntitiesIF, Iterable<User> {
 	public Users filter(long user_Id) {
 		return new Users(list.stream().filter(t -> t.getId() == user_Id));
 	}
+	
+	public int size() {
+		return list.size();
+	}
 
 	@Override
 	public Iterator<User> iterator() {

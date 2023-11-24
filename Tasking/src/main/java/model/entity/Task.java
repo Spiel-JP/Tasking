@@ -2,7 +2,6 @@ package model.entity;
 
 import java.time.LocalDateTime;
 
-import model.IF.EntityIF;
 import model.IF.Taskable;
 
 public final class Task implements Taskable {
@@ -33,7 +32,7 @@ public final class Task implements Taskable {
 
 	@Override
 	public String toString() {
-		return ":" + title + ":<" + description + ">:" + status + ":" + due_date;
+		return user.getName() + ":" + title + ":<" + description + ">:" + status + ":" + due_date;
 	}
 
 	@Override
@@ -67,7 +66,7 @@ public final class Task implements Taskable {
 	}
 
 	@Override
-	public boolean isNull(EntityIF e) {
+	public boolean isNull() {
 		return false;
 	}
 

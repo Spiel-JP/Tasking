@@ -37,8 +37,8 @@ public final class User implements EntityIF {
 	}
 
 	@Override
-	public boolean isNull(EntityIF e) {
-		return DUMMY == e;
+	public boolean isNull() {
+		return DUMMY == this;
 	}
 
 }

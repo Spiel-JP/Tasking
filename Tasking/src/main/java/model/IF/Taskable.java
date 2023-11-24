@@ -80,8 +80,8 @@ public interface Taskable extends EntityIF {
 		}
 
 		@Override
-		public boolean isNull(EntityIF e) {
-			return this == e;
+		public boolean isNull() {
+			return this == NULL;
 		}
 	}
 }

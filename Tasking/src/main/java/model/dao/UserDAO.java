@@ -1,5 +1,6 @@
 package model.dao;
 
+import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,11 +8,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import model.IF.DaoIF;
-import model.IF.Taskable;
 import model.entity.User;
 import model.entity.Users;
 
-public final class UserDAO implements DaoIF {
+public final class UserDAO implements DaoIF, Serializable {
 
 	@Override
 	public Users fetchAll() {
@@ -20,7 +20,7 @@ public final class UserDAO implements DaoIF {
 		Users users = new Users();
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
-			String sql = "select user.PKEYUSER_ID as ID,user.NAME,user.PASS from project3.user user;";
+			String sql = "select user.PKEYUSER_ID as ID,user.NAME,user.PASS from projitsu3.user user;";
 
 			//SELECT文を実行
 			PreparedStatement pStmt = conn.prepareStatement(sql);
@@ -45,7 +45,27 @@ public final class UserDAO implements DaoIF {
 		return users;
 	}
 
-	public int append(Taskable entity) {
+	public int append(User entity, String password) {
+
+		if (entity.isNull()) {
+			return 0;
+		}
+
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			//ID
+			long id = fetchAll().size();
+			//NAME
+			String name = entity.getName();
+			String sql = "INSERT INTO projitsu3.user VALUES(?,?,?);";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setLong(1, id);
+			ps.setString(2, name);
+			ps.setString(3, password);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 		return 0;
 	}
 

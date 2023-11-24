@@ -6,6 +6,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import model.IF.DaoIF;
@@ -13,9 +14,14 @@ import model.IF.Taskable;
 import model.entity.Status;
 import model.entity.Tasks;
 import model.entity.User;
-import model.entity.Users;
 
 public final class TasksDAO implements DaoIF, Serializable {
+
+	private final UserDAO userDAO;
+
+	public TasksDAO() {
+		userDAO = new UserDAO();
+	}
 
 	@Override
 	public Tasks fetchAll() {
@@ -37,7 +43,7 @@ public final class TasksDAO implements DaoIF, Serializable {
 				final long id = rs.getLong("ID");
 				//userID
 				final String name = rs.getString("USER");
-				User user = new Users().get(name);
+				User user = userDAO.fetchAll().get(name);
 				//タイトル
 				final String titke = rs.getString("TITLE");
 				//説明
@@ -69,9 +75,9 @@ public final class TasksDAO implements DaoIF, Serializable {
 			//タイトル
 			String title = entity.getTitle();
 			//ユーザー名
-			long userId = entity.getId();
+			long userId = entity.getUser().getId();
 			//ステータス
-			String status = entity.getStatus().getStatus();
+			int status = entity.getStatus().getWeight();
 			//期限日
 			LocalDateTime due_date = entity.getLocalDateTime();
 			//説明
@@ -79,10 +85,12 @@ public final class TasksDAO implements DaoIF, Serializable {
 
 			String sql = "INSERT INTO projitsu3.task VALUES (?,?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
-			ps.setLong(1, fetchAll().toList().stream().count());
+			ps.setLong(1, fetchAll().size() + 1);
 			ps.setLong(2, userId);
 			ps.setString(3, title);
 			ps.setString(4, description);
+			ps.setInt(5, status);
+			ps.setTimestamp(6, Timestamp.valueOf(due_date));
 
 			return ps.executeUpdate();
 		} catch (SQLException e) {

@@ -19,12 +19,14 @@ public class Test {
 
 		TasksDAO dao = new TasksDAO();
 
+		//dao.append(Taskable.of(2, User.of(2, "root","114514"), "よくわからない", "yokuwakaranai", Status.TODO, LocalDateTime.now()));
 		Tasks ddd = dao.fetchAll();
 		ddd.add(task);
 		ddd.add(task2);
 		ddd.add(Task.create(-1, null, null, null, null, null));
 		for (Taskable t : ddd) {
-			System.out.println(t);
+			System.out.print(t);
+			System.out.print(":"+t.getId()+"\n");
 		}
 
 		System.out.println(Status.stringToStatus("Null"));
