@@ -17,12 +17,6 @@ import model.entity.User;
 
 public final class TasksDAO implements DaoIF, Serializable {
 
-	private final UserDAO userDAO;
-
-	public TasksDAO() {
-		userDAO = new UserDAO();
-	}
-
 	@Override
 	public Tasks fetchAll() {
 
@@ -37,6 +31,8 @@ public final class TasksDAO implements DaoIF, Serializable {
 			//SELECTを実行
 			PreparedStatement pStmt = conn.prepareStatement(sql);
 			ResultSet rs = pStmt.executeQuery();
+
+			UsersDAO userDAO = new UsersDAO();
 
 			while (rs.next()) {
 				//ID
@@ -99,4 +95,7 @@ public final class TasksDAO implements DaoIF, Serializable {
 		return 0;
 	}
 
+	public int allSize() {
+		return fetchAll().size();
+	}
 }

@@ -34,15 +34,15 @@ https://www.tooplate.com/view/2121-wave-cafe
 						<ul class="tm-site-nav-ul">
 							<!-- Main -->
 							<li class="tm-page-nav-item"><a href="#Home"
-								class="tm-page-link active">
-								<i class="fas fa-mug-hot tm-page-link-icon"></i> 
-									<span>HOME SCREEN</span>
+								class="tm-page-link active"> <i
+									class="fas fa-mug-hot tm-page-link-icon"></i> <span>HOME
+										SCREEN</span>
 							</a></li>
 							<!-- To Home  -->
-							<li class="tm-page-nav-item">
-							<a href="#Creat" class="tm-page-link">
-								<i class="fas fa-users tm-page-link-icon"></i>
-									<span>CREATE TASK</span>
+							<li class="tm-page-nav-item"><a href="#Creat"
+								class="tm-page-link"> <i
+									class="fas fa-users tm-page-link-icon"></i> <span>CREATE
+										TASK</span>
 							</a></li>
 						</ul>
 					</nav>
@@ -64,6 +64,7 @@ https://www.tooplate.com/view/2121-wave-cafe
 							</ul>
 						</nav>
 
+						<!-- TODOTaskList -->
 						<div id="TODO" class="tm-tab-content">
 							<!-- MODEL 
 								<div class="tm-list-item">
@@ -79,7 +80,6 @@ https://www.tooplate.com/view/2121-wave-cafe
 									</div>
 								</div>
 								-->
-							<!-- TODOTaskList -->
 							<c:forEach var="task" items="${todoTasks}">
 								<div class="tm-list-item">
 									<img src="img/iced-americano.png" alt="Image"
@@ -97,11 +97,11 @@ https://www.tooplate.com/view/2121-wave-cafe
 									</div>
 								</div>
 							</c:forEach>
-							<!-- End TODOTaskList -->
 						</div>
+						<!-- End TODOTaskList -->
 
+						<!-- DOINGTaskList -->
 						<div id="DOING" class="tm-tab-content">
-							<!-- DOINGTaskList -->
 							<c:forEach var="task" items="${doingTasks}">
 								<div class="tm-list-item">
 									<img src="img/iced-americano.png" alt="Image"
@@ -109,8 +109,8 @@ https://www.tooplate.com/view/2121-wave-cafe
 									<div class="tm-black-bg tm-list-item-text">
 										<h3 class="tm-list-item-name">
 											<c:out value="${task.getTitle()}" />
-											<span class="tm-list-item-price"> 
-											<c:out value="${task.getLocalDateTime().toString()}" />
+											<span class="tm-list-item-price"> <c:out
+													value="${task.getLocalDateTime().toString()}" />
 											</span>
 										</h3>
 										<p class="tm-list-item-description">
@@ -119,12 +119,11 @@ https://www.tooplate.com/view/2121-wave-cafe
 									</div>
 								</div>
 							</c:forEach>
-							<!-- End DOINGTaskList -->
 						</div>
+						<!-- End DOINGTaskList -->
 
-
+						<!-- DONETaskList -->
 						<div id="DONE" class="tm-tab-content">
-							<!-- DONETaskList -->
 							<c:forEach var="task" items="${doneTasks}">
 								<div class="tm-list-item">
 									<img src="img/iced-americano.png" alt="Image"
@@ -132,8 +131,8 @@ https://www.tooplate.com/view/2121-wave-cafe
 									<div class="tm-black-bg tm-list-item-text">
 										<h3 class="tm-list-item-name">
 											<c:out value="${task.getTitle()}" />
-											<span class="tm-list-item-price">
-											<c:out value="${task.getLocalDateTime().toString()}" />
+											<span class="tm-list-item-price"> <c:out
+													value="${task.getLocalDateTime().toString()}" />
 											</span>
 										</h3>
 										<p class="tm-list-item-description">
@@ -142,35 +141,43 @@ https://www.tooplate.com/view/2121-wave-cafe
 									</div>
 								</div>
 							</c:forEach>
-							<!-- End DONETaskList -->
 						</div>
+						<!-- End DONETaskList -->
+					</div>
+					<!-- end This Home Page -->
+					<!-- Creat Task Page-->
+					<div id="Creat" class="tm-page-content">
+						<div class="tm-black-bg tm-create-text-container">
+							<h2 class="tm-text-primary">CREATE NEW TASK</h2>
+						</div>
+						<div class="tm-black-bg tm-create-form-container">
+							<form action="/Tasking/regist" method="post" id="contact-form">
+								<div class="tm-form-group">
+									<label for="titlelabel">タイトル</label> <input type="text"
+										name="title" id="titlelabel" class="tm-form-control" placeholder="例） タイトル" required>
+								</div>
+								<div class="tm-form-group">
+									<label for="due-date-label">期限日</label>
+									<input class="tm-form-control" type="datetime-local" name="due_date" id="due-date-label"
+										required>
+								</div>
+								<div class="tm-form-group tm-mb-30">
+									<label for="descriptionlabel">説明</label>
+									<textarea rows="6" name="description" id="descriptionlabel" class="tm-form-control"
+										placeholder="100文字以内で" required></textarea>
+								</div>
+
+								<div>
+									<button type="submit" class="tm-btn-primary tm-align-right">CREATE!</button>
+								</div>
+						</div>
+						</form>
+						<!-- end Creat Task Page -->
 					</div>
 				</main>
 			</div>
-			<!-- end This Home Page -->
 
-			<!-- Creat New Task -->
-			<div id="Creat" class="tm-page-content">
-				<form action="#" method="post">
-					<div class="input-space">
-						<div class="input-item">
-							<label for="titlelabel">タイトル</label>
-							<input type="text" name="title" id="titlelabel" placeholder="例） タイトル">
-						</div>
-						<div class="input-item">
-							<label for="due-date-label">期限日</label>
-							<input type="datetime" name="due_date" id="due-date-label">
-						</div>
-						<div class="input-item">
-							<label for="descriptionlabel">説明</label>
-							<textarea name="description" id="descriptionlabel" placeholder="100文字以内で"></textarea>
-						</div>
-						
-						<input type="submit" value="新規作成">
-					</div>
-				</form>
-				<!-- end Drink Menu Page -->
-			</div>
+
 		</div>
 	</div>
 	<footer class="tm-site-footer">

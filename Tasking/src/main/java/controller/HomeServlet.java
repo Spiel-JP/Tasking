@@ -33,11 +33,12 @@ public final class HomeServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		//SELECT一覧
-		Tasks dao = new TasksDAO().fetchAll();
+		Tasks tasks = new TasksDAO().fetchAll();
+
 		//ステータスごとにフィルタリング→Listへ変更
-		request.setAttribute("todoTasks", dao.fillter(Status.TODO).toList());
-		request.setAttribute("doingTasks", dao.fillter(Status.DOING).toList());
-		request.setAttribute("doneTasks", dao.fillter(Status.DONE).toList());
+		request.setAttribute("todoTasks", tasks.fillter(Status.TODO).toList());
+		request.setAttribute("doingTasks", tasks.fillter(Status.DOING).toList());
+		request.setAttribute("doneTasks", tasks.fillter(Status.DONE).toList());
 
 		request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 	}

@@ -2,6 +2,7 @@ package test;
 
 import java.time.LocalDateTime;
 import java.time.Month;
+import java.util.function.IntPredicate;
 
 import model.IF.Taskable;
 import model.dao.TasksDAO;
@@ -26,8 +27,10 @@ public class Test {
 		ddd.add(Task.create(-1, null, null, null, null, null));
 		for (Taskable t : ddd) {
 			System.out.print(t);
-			System.out.print(":"+t.getId()+"\n");
+			System.out.print(":" + t.getId() + "\n");
 		}
+
+		IntPredicate in;
 
 		System.out.println(Status.stringToStatus("Null"));
 

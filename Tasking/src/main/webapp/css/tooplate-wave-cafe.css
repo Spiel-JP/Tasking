@@ -35,7 +35,9 @@ p {
     margin-top: 0;
 }
 
-h2 { margin-top: 0; }
+h2 { 
+	margin-top: 0;
+ }
 
 .input-space{
     background-color: #1E5050;
@@ -77,7 +79,6 @@ h2 { margin-top: 0; }
 .tm-right {
     width: 50%;
 }
-
 .tm-left-inner { position: fixed; }
 
 .tm-site-header {
@@ -211,7 +212,9 @@ h2 { margin-top: 0; }
 .tm-tab-content { animation: fadeEffect 1s; }
 .tm-page-content { animation: fadeEffect 1s; }
 
-.tm-text-primary { color: #3CC; }
+.tm-text-primary { 
+	color: #3CC;
+}
 .tm-mb-20 { margin-bottom: 20px; }
 .tm-mb-30 { margin-bottom: 30px; }
 .tm-img-right { 
@@ -245,19 +248,22 @@ h2 { margin-top: 0; }
 .tm-special-item-title { font-size: 1.4rem; }
 .tm-special-item-description { padding: 25px 30px; }
 
-/* Contact */
-.tm-contact-text-container {
+/* Create */
+.tm-create-text-container {
     padding: 45px 50px;
-    margin-bottom: 20px;    
+    margin-bottom: 20px;
+    align-items: center;   
 }
 
-.tm-contact-form-container {
+.tm-create-form-container {
     max-width: 460px;
     padding: 40px 50px;
     box-sizing: border-box;
 }
 
-.tm-form-group { margin-bottom: 25px; }
+.tm-form-group { 
+	margin-bottom: 25px;	
+}
 
 .tm-form-control {
     display: block;

@@ -11,11 +11,14 @@ import model.IF.DaoIF;
 import model.entity.User;
 import model.entity.Users;
 
-public final class UserDAO implements DaoIF, Serializable {
+public final class UsersDAO implements DaoIF, Serializable {
+
+	public UsersDAO() {
+		DaoIF.readJDBCDriver();
+	}
 
 	@Override
 	public Users fetchAll() {
-		DaoIF.readJDBCDriver();
 
 		Users users = new Users();
 
@@ -43,6 +46,38 @@ public final class UserDAO implements DaoIF, Serializable {
 		}
 
 		return users;
+	}
+
+	public User fitchByName(String name) {
+
+		User user = User.DUMMY;
+		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
+			StringBuilder sb = new StringBuilder();
+			sb.append(
+					"select projitsu3.user.PKEYUSER_ID as ID,projitsu3.user.NAME,projitsu3.user.PASS from projitsu3.user ");
+			sb.append("where projitsu3.user.NAME in ('");
+			sb.append(name);
+			sb.append("');");
+			PreparedStatement pStmt = conn.prepareStatement(sb.toString());
+			ResultSet rs = pStmt.executeQuery();
+
+			while (rs.next()) {
+				//ID
+				final long id = rs.getLong("ID");
+				//NAME
+				final String n = rs.getString("NAME");
+				//PASS
+				final String pass = rs.getString("PASS");
+
+				user = User.of(id, n, pass);
+			}
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+			return user;
+		}
+
+		return user;
 	}
 
 	public int append(User entity, String password) {
