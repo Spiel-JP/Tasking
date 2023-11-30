@@ -14,17 +14,16 @@ import model.entity.Status;
 import model.entity.User;
 
 /**
- * Servlet implementation class RegistServlet
+ * Servlet implementation class UpdateServlet
  */
-
-@WebServlet("/regist")
-public final class RegistServlet extends HttpServlet {
+@WebServlet("/update")
+public class UpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public RegistServlet() {
+	public UpdateServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -46,10 +45,11 @@ public final class RegistServlet extends HttpServlet {
 
 		//別サーブレットから情報渡し
 		User user = (User) request.getSession().getAttribute("user");
-		String title = (String) request.getParameter("title");
+		String title = request.getParameter("title");
+		int statasId = Integer.parseInt(request.getParameter("statusId"));
 
 		//JSON日付形式 yyyy-mm-dd"T"hh:mm:ss
-		String due_date = (String) request.getParameter("due_date");
+		String due_date = request.getParameter("due_date");
 		String date = due_date.substring(0, 10);
 		String time = due_date.substring(11, 16);
 
@@ -63,14 +63,11 @@ public final class RegistServlet extends HttpServlet {
 				user,
 				title,
 				description,
-				Status.TODO,
+				Status.numberToStatus(statasId),
 				Timestamp.valueOf(due_date).toLocalDateTime());
-
-		//DB追加
-		dao.append(task);
-
-		response.sendRedirect("/Tasking/home");
-
+		dao.update(task);
+		
+		
 	}
 
 }

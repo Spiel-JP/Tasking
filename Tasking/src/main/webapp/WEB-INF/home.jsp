@@ -33,20 +33,29 @@ https://www.tooplate.com/view/2121-wave-cafe
 					<nav class="tm-site-nav">
 						<ul class="tm-site-nav-ul">
 							<!-- Main -->
-							<li class="tm-page-nav-item"><a href="#Home"
-								class="tm-page-link active"> <i
-									class="fas fa-mug-hot tm-page-link-icon"></i> <span>HOME
-										SCREEN</span>
-							</a></li>
+							<li class="tm-page-nav-item">
+								<a href="#Home" class="tm-page-link active">
+								<i class="fas fa-mug-hot tm-page-link-icon"></i>
+								<span>HOME SCREEN</span>
+								</a>
+							</li>
 							<!-- To Home  -->
-							<li class="tm-page-nav-item"><a href="#Creat"
-								class="tm-page-link"> <i
-									class="fas fa-users tm-page-link-icon"></i> <span>CREATE
-										TASK</span>
-							</a></li>
+							<li class="tm-page-nav-item">
+								<a href="#Creat" class="tm-page-link">
+								<i class="fas fa-users tm-page-link-icon"></i>
+								<span>CREATE TASK</span>
+								</a>
+							</li>
 						</ul>
 					</nav>
+					<footer class="tm-site-footer">
+						<p class="tm-black-bg tm-footer-text">
+							Copyright 2023 TaskManager | CHDesign: 
+							<a href="https://www.yamatozakura.work" class="tm-footer-link"rel="sponsored" target="_parent">Yamatozakura</a>
+						</p>
+					</footer>
 				</div>
+
 			</div>
 
 			<div class="tm-right">
@@ -55,10 +64,8 @@ https://www.tooplate.com/view/2121-wave-cafe
 					<div id="Home" class="tm-page-content">
 						<nav class="tm-black-bg tm-drinks-nav">
 							<ul>
-								<li><a href="#TODO" class="tm-tab-link active"
-									data-id="TODO">TODO</a></li>
-								<li><a href="#DOING" class="tm-tab-link" data-id="DOING">DOING</a>
-								</li>
+								<li><a href="#TODO" class="tm-tab-link active"data-id="TODO">TODO</a></li>
+								<li><a href="#DOING" class="tm-tab-link" data-id="DOING">DOING</a></li>
 								<li><a href="#DONE" class="tm-tab-link" data-id="DONE">DONE</a>
 								</li>
 							</ul>
@@ -66,29 +73,17 @@ https://www.tooplate.com/view/2121-wave-cafe
 
 						<!-- TODOTaskList -->
 						<div id="TODO" class="tm-tab-content">
-							<!-- MODEL 
-								<div class="tm-list-item">
-									<img src="img/iced-americano.png" alt="Image"
-										class="tm-list-item-img">
-									<div class="tm-black-bg tm-list-item-text">
-										<h3 class="tm-list-item-name">
-											Iced Americano<span class="tm-list-item-price">$10.25</span>
-										</h3>
-										<p class="tm-list-item-description">Here is a short
-											description for the first item. Wave Cafe Template is
-											provided by Tooplate.</p>
-									</div>
-								</div>
-								-->
 							<c:forEach var="task" items="${todoTasks}">
 								<div class="tm-list-item">
-									<img src="img/iced-americano.png" alt="Image"
-										class="tm-list-item-img">
+									<c:set	var="updatetask" value="${task}"/>
+									<a href="#Update" class="tm-update-link" id="${task.getId}">
+										<img src="img/iced-americano.png" alt="Image" class="tm-list-item-img">
+									</a>
 									<div class="tm-black-bg tm-list-item-text">
 										<h3 class="tm-list-item-name">
 											<c:out value="${task.getTitle()}" />
-											<span class="tm-list-item-price"> <c:out
-													value="${task.getLocalDateTime().toString()}" />
+											<span class="tm-list-item-price">
+												<c:out value="${task.getLocalDateTime().toString()}" />
 											</span>
 										</h3>
 										<p class="tm-list-item-description">
@@ -104,13 +99,14 @@ https://www.tooplate.com/view/2121-wave-cafe
 						<div id="DOING" class="tm-tab-content">
 							<c:forEach var="task" items="${doingTasks}">
 								<div class="tm-list-item">
-									<img src="img/iced-americano.png" alt="Image"
-										class="tm-list-item-img">
+									<a href="#Update" class="tm-update-link" id="${task.getId()}">
+										<img src="img/iced-americano.png" alt="Image" class="tm-list-item-img">
+									</a>
 									<div class="tm-black-bg tm-list-item-text">
 										<h3 class="tm-list-item-name">
 											<c:out value="${task.getTitle()}" />
-											<span class="tm-list-item-price"> <c:out
-													value="${task.getLocalDateTime().toString()}" />
+											<span class="tm-list-item-price">
+												<c:out value="${task.getLocalDateTime().toString()}" />
 											</span>
 										</h3>
 										<p class="tm-list-item-description">
@@ -126,13 +122,14 @@ https://www.tooplate.com/view/2121-wave-cafe
 						<div id="DONE" class="tm-tab-content">
 							<c:forEach var="task" items="${doneTasks}">
 								<div class="tm-list-item">
-									<img src="img/iced-americano.png" alt="Image"
-										class="tm-list-item-img">
+									<a href="#Update" class="tm-update-link">
+										<img src="img/iced-americano.png" alt="Image" class="tm-list-item-img">
+									</a>
 									<div class="tm-black-bg tm-list-item-text">
 										<h3 class="tm-list-item-name">
 											<c:out value="${task.getTitle()}" />
-											<span class="tm-list-item-price"> <c:out
-													value="${task.getLocalDateTime().toString()}" />
+											<span class="tm-list-item-price">
+												<c:out value="${task.getLocalDateTime().toString()}" />
 											</span>
 										</h3>
 										<p class="tm-list-item-description">
@@ -150,43 +147,68 @@ https://www.tooplate.com/view/2121-wave-cafe
 						<div class="tm-black-bg tm-create-text-container">
 							<h2 class="tm-text-primary">CREATE NEW TASK</h2>
 						</div>
-						<div class="tm-black-bg tm-create-form-container">
+						<div class="tm-black-bg tm-create-form-container tm-align-right">
 							<form action="/Tasking/regist" method="post" id="contact-form">
 								<div class="tm-form-group">
-									<label for="titlelabel">タイトル</label> <input type="text"
-										name="title" id="titlelabel" class="tm-form-control" placeholder="例） タイトル" required>
+									<label for="titlelabel">タイトル</label>
+									<input type="text" name="title" id="titlelabel" class="tm-form-control" placeholder="例） タイトル" required>
 								</div>
 								<div class="tm-form-group">
 									<label for="due-date-label">期限日</label>
-									<input class="tm-form-control" type="datetime-local" name="due_date" id="due-date-label"
-										required>
+									<input class="tm-form-control" type="datetime-local" name="due_date" id="due-date-label" required>
 								</div>
 								<div class="tm-form-group tm-mb-30">
 									<label for="descriptionlabel">説明</label>
-									<textarea rows="6" name="description" id="descriptionlabel" class="tm-form-control"
-										placeholder="100文字以内で" required></textarea>
+									<textarea rows="6" name="description" id="descriptionlabel"
+										class="tm-form-control" placeholder="100文字以内で" required></textarea>
 								</div>
-
 								<div>
 									<button type="submit" class="tm-btn-primary tm-align-right">CREATE!</button>
 								</div>
+							</form>
 						</div>
-						</form>
-						<!-- end Creat Task Page -->
 					</div>
+					<!-- end Creat Task Page -->
+					<!-- Update Task Page -->
+					<div id="Update" class="tm-page-content">
+						<div class="tm-black-bg tm-create-text-container">
+								<h2 class="tm-text-primary">UPDATE TO TASK</h2>
+						</div>
+						<div class="tm-black-bg tm-create-form-container tm-align-right">
+							<form action="/Tasking/update" method="post" id="contact-form">
+								<div class="tm-form-group">
+									<label for="titlelabel">タイトル</label>
+									<input type="text" name="title" id="titlelabel" class="tm-form-control" placeholder="aaa"  required>
+								</div>
+								<div class="tm-form-group">
+									<label for="due-date-label">期限日</label>
+									<input class="tm-form-control" type="datetime-local" name="due_date" id="due-date-label"  required>
+								</div>
+								<div class="tm-form-group">
+									<label for="status-label">ステータス</label>
+									<select size="1" name="status" id="status-label">
+										<option value="1">1</option>
+										<option value="1">1</option>
+										<option value="1">1</option>
+									</select>
+								</div>
+								<div class="tm-form-group tm-mb-30">
+									<label for="descriptionlabel">説明</label>
+									<textarea rows="6" name="description" id="descriptionlabel"
+									class="tm-form-control" placeholder="${updatetask.getDescription()}" required></textarea>
+								</div>
+								<div>
+									<button type="submit" class="tm-btn-primary tm-align-right">CREATE!</button>
+								</div>
+							</form>
+						</div>
+					</div>
+					<!-- End Update Task Page -->
 				</main>
 			</div>
-
-
 		</div>
 	</div>
-	<footer class="tm-site-footer">
-		<p class="tm-black-bg tm-footer-text">
-			Copyright 2023 TaskManager | CHDesign: <a
-				href="https://www.yamatozakura.work" class="tm-footer-link"
-				rel="sponsored" target="_parent">Yamatozakura</a>
-		</p>
-	</footer>
+
 	</div>
 
 	<!-- Background video -->
@@ -260,6 +282,16 @@ https://www.tooplate.com/view/2121-wave-cafe
         highlightMenu($(event.currentTarget));
         showPage($(event.currentTarget.hash));
       });
+
+      $('.tm-update-link').click(function(event) {
+          
+          if(window.innerWidth > 991) {
+            event.preventDefault();
+          }
+
+          highlightMenu($(event.currentTarget));
+          showPage($(event.currentTarget.hash));
+        });
 
       
       /***************** Tabs *******************/

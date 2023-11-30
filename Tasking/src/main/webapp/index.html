@@ -54,10 +54,53 @@ https://www.tooplate.com/view/2121-wave-cafe
 									<p>このアプリケーションは、自分自身の業務について明確な管理を行うことができます。</p>
 									<p>ぜひHOMEリンクを押して、タスク管理アプリを起動してください！</p>
 									<br>
+
+									<!-- Button to open the modal login form -->
+									<button
+										onclick="document.getElementById('id01').style.display='block'">Login</button>
+
+									<!-- The Modal -->
+									<div id="id01" class="modal">
+										<span onclick="document.getElementById('id01').style.display='none'"
+											class="close" title="Close Modal">&times;</span>
+
+										<!-- Modal Content -->
+										<form class="modal-content animate" action="/Tasking/home" method="post">
+											<div class="imgcontainer">
+												<img src="img/about-2.png" alt="Avatar" class="avatar">
+											</div>
+
+											<div class="container">
+												<label for="userName"><b>Username</b></label>
+												<input type="text" placeholder="Enter Username" name="userName"
+													required>
+
+												<label for="pass"><b>Password</b></label>
+												<input type="password" placeholder="Enter Password" name="pass"
+													required>
+
+												<button type="submit">Login</button>
+												<label>
+													<input type="checkbox" checked="checked" name="remember"> Remember
+													me
+												</label>
+											</div>
+
+											<div class="container" style="background-color:#f1f1f1">
+												<button type="button"
+													onclick="document.getElementById('id01').style.display='none'"
+													class="cancelbtn">Cancel</button>
+												<span class="psw">Forgot <a href="#">password?</a></span>
+											</div>
+										</form>
+									</div>
+
+									<!--
 									<a href="/Tasking/home">
 										<i class="fas fa-users tm-page-link-icon"></i>
 										<span>GO HOME!</span>
 									</a>
+									-->
 								</div>
 							</div>
 						</div>
@@ -186,6 +229,17 @@ https://www.tooplate.com/view/2121-wave-cafe
 			});
 		});
 
+	</script>
+	<script>
+		// Get the modal
+		var modal = document.getElementById('id01');
+
+		// When the user clicks anywhere outside of the modal, close it
+		window.onclick = function (event) {
+			if (event.target == modal) {
+				modal.style.display = "none";
+			}
+		}
 	</script>
 </body>
 

@@ -20,4 +20,6 @@ public interface DaoIF {
 
 	EntitiesIF fetchAll();
 
+	int allSize();
+
 }

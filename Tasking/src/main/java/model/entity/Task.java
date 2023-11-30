@@ -32,7 +32,7 @@ public final class Task implements Taskable {
 
 	@Override
 	public String toString() {
-		return user.getName() + ":" + title + ":<" + description + ">:" + status + ":" + due_date;
+		return user.getName() + "," + title + "," + description + "," + status + "," + due_date;
 	}
 
 	@Override

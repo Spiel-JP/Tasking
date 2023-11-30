@@ -32,13 +32,13 @@ public final class User implements EntityIF {
 		return name;
 	}
 
-	public boolean pass(String str) {
+	public boolean isPass(String str) {
 		return this.pass.equals(str);
 	}
 
 	@Override
 	public boolean isNull() {
-		return DUMMY == this;
+		return this == DUMMY;
 	}
 
 }

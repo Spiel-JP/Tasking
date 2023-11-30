@@ -13,14 +13,19 @@ import model.entity.Users;
 
 public final class UsersDAO implements DaoIF, Serializable {
 
+	private Users users;
+
 	public UsersDAO() {
+		users = null;
 		DaoIF.readJDBCDriver();
 	}
 
 	@Override
 	public Users fetchAll() {
 
-		Users users = new Users();
+		if (users == null) {
+			users = new Users();
+		}
 
 		try (Connection conn = DriverManager.getConnection(URL, USER, PASS)) {
 			String sql = "select user.PKEYUSER_ID as ID,user.NAME,user.PASS from projitsu3.user user;";
@@ -102,6 +107,11 @@ public final class UsersDAO implements DaoIF, Serializable {
 		}
 
 		return 0;
+	}
+
+	@Override
+	public int allSize() {
+		return fetchAll().size();
 	}
 
 }

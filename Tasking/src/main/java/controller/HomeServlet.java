@@ -8,8 +8,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.dao.TasksDAO;
+import model.dao.UsersDAO;
 import model.entity.Status;
 import model.entity.Tasks;
+import model.entity.User;
 
 /**
  * Servlet implementation class HomeServlet
@@ -32,13 +34,36 @@ public final class HomeServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		request.setCharacterEncoding("UTF-8");
+
+		//別サーブレットから情報渡し
+		User user = (User) request.getSession().getAttribute("user");
+
+		if (user == null) {
+			user = User.DUMMY;
+		}
+
+		if (user.isNull()) {
+			String userName = request.getParameter("userName");
+			String pass = request.getParameter("pass");
+
+			user = new UsersDAO().fitchByName(userName);
+
+			if (!user.isPass(pass)) {
+				response.sendRedirect("/Tasking/index.html");
+				return;
+			}
+		}
+
 		//SELECT一覧
-		Tasks tasks = new TasksDAO().fetchAll();
+		Tasks tasks = new TasksDAO().fetchAll(user.getName());
 
 		//ステータスごとにフィルタリング→Listへ変更
 		request.setAttribute("todoTasks", tasks.fillter(Status.TODO).toList());
 		request.setAttribute("doingTasks", tasks.fillter(Status.DOING).toList());
 		request.setAttribute("doneTasks", tasks.fillter(Status.DONE).toList());
+		request.getSession().setAttribute("user", user);
 
 		request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);
 	}

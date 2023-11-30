@@ -2,7 +2,6 @@ package test;
 
 import java.time.LocalDateTime;
 import java.time.Month;
-import java.util.function.IntPredicate;
 
 import model.IF.Taskable;
 import model.dao.TasksDAO;
@@ -11,6 +10,7 @@ import model.entity.Task;
 import model.entity.Tasks;
 
 public class Test {
+
 	public static void main(String[] args) {
 
 		Taskable task = Taskable.of(-1, null, null, "this is testsample", Status.TODO,
@@ -30,9 +30,6 @@ public class Test {
 			System.out.print(":" + t.getId() + "\n");
 		}
 
-		IntPredicate in;
-
 		System.out.println(Status.stringToStatus("Null"));
-
 	}
 }
