@@ -1,6 +1,8 @@
 package controller;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -56,13 +58,16 @@ public final class HomeServlet extends HttpServlet {
 			}
 		}
 
-		//SELECT一覧
+		//名前情報からSELECT一覧
 		Tasks tasks = new TasksDAO().fetchAll(user.getName());
 
 		//ステータスごとにフィルタリング→Listへ変更
+		request.setAttribute("allTasks", tasks.toList());
 		request.setAttribute("todoTasks", tasks.fillter(Status.TODO).toList());
 		request.setAttribute("doingTasks", tasks.fillter(Status.DOING).toList());
 		request.setAttribute("doneTasks", tasks.fillter(Status.DONE).toList());
+		request.setAttribute("status",
+				Arrays.asList(Status.values()).stream().filter(t -> Status.NOTING != t).collect(Collectors.toList()));
 		request.getSession().setAttribute("user", user);
 
 		request.getRequestDispatcher("/WEB-INF/home.jsp").forward(request, response);

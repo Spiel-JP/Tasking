@@ -66,17 +66,15 @@ https://www.tooplate.com/view/2121-wave-cafe
 							<ul>
 								<li><a href="#TODO" class="tm-tab-link active"data-id="TODO">TODO</a></li>
 								<li><a href="#DOING" class="tm-tab-link" data-id="DOING">DOING</a></li>
-								<li><a href="#DONE" class="tm-tab-link" data-id="DONE">DONE</a>
-								</li>
+								<li><a href="#DONE" class="tm-tab-link" data-id="DONE">DONE</a></li>
 							</ul>
 						</nav>
 
 						<!-- TODOTaskList -->
 						<div id="TODO" class="tm-tab-content">
-							<c:forEach var="task" items="${todoTasks}">
-								<div class="tm-list-item">
-									<c:set	var="updatetask" value="${task}"/>
-									<a href="#Update" class="tm-update-link" id="${task.getId}">
+							<c:forEach var="task" items="${todoTasks}" >
+								<div class="tm-list-item" id="${task.getId()}">
+									<a href="#Update" class="tm-update-link"  onclick='copyText("${task.getId()}")'>
 										<img src="img/iced-americano.png" alt="Image" class="tm-list-item-img">
 									</a>
 									<div class="tm-black-bg tm-list-item-text">
@@ -98,8 +96,8 @@ https://www.tooplate.com/view/2121-wave-cafe
 						<!-- DOINGTaskList -->
 						<div id="DOING" class="tm-tab-content">
 							<c:forEach var="task" items="${doingTasks}">
-								<div class="tm-list-item">
-									<a href="#Update" class="tm-update-link" id="${task.getId()}">
+								<div class="tm-list-item" id="${task.getId()}">
+									<a href="#Update" class="tm-update-link"  onclick='copyText("${task.getId()}")'>
 										<img src="img/iced-americano.png" alt="Image" class="tm-list-item-img">
 									</a>
 									<div class="tm-black-bg tm-list-item-text">
@@ -121,8 +119,8 @@ https://www.tooplate.com/view/2121-wave-cafe
 						<!-- DONETaskList -->
 						<div id="DONE" class="tm-tab-content">
 							<c:forEach var="task" items="${doneTasks}">
-								<div class="tm-list-item">
-									<a href="#Update" class="tm-update-link">
+								<div class="tm-list-item" id="${task.getId()}">
+									<a href="#Update" class="tm-update-link"  onclick='copyText("${task.getId()}")'>
 										<img src="img/iced-americano.png" alt="Image" class="tm-list-item-img">
 									</a>
 									<div class="tm-black-bg tm-list-item-text">
@@ -175,32 +173,35 @@ https://www.tooplate.com/view/2121-wave-cafe
 								<h2 class="tm-text-primary">UPDATE TO TASK</h2>
 						</div>
 						<div class="tm-black-bg tm-create-form-container tm-align-right">
+							<c:forEach var="task" items="allTasks">
 							<form action="/Tasking/update" method="post" id="contact-form">
 								<div class="tm-form-group">
-									<label for="titlelabel">タイトル</label>
-									<input type="text" name="title" id="titlelabel" class="tm-form-control" placeholder="aaa"  required>
+									<label for="title">タイトル</label>
+									<input type="text" name="title" id="title" class="tm-form-control" required>
 								</div>
 								<div class="tm-form-group">
-									<label for="due-date-label">期限日</label>
-									<input class="tm-form-control" type="datetime-local" name="due_date" id="due-date-label"  required>
+									<label for="due-date">期限日</label>
+									<input class="tm-form-control" type="datetime-local" name="due_date" id="due-date"  required>
 								</div>
 								<div class="tm-form-group">
 									<label for="status-label">ステータス</label>
-									<select size="1" name="status" id="status-label">
-										<option value="1">1</option>
-										<option value="1">1</option>
-										<option value="1">1</option>
+									<select size="1" name="statusId" id="status-label">
+										<c:forEach var="item" items="${status}">
+											<option value="${item.getWeight()}"><c:out value="${item.getStatus()}" /></option>
+										</c:forEach>
 									</select>
 								</div>
 								<div class="tm-form-group tm-mb-30">
-									<label for="descriptionlabel">説明</label>
-									<textarea rows="6" name="description" id="descriptionlabel"
-									class="tm-form-control" placeholder="${updatetask.getDescription()}" required></textarea>
+									<label for="description">説明</label>
+									<textarea rows="6" name="description" id="description"
+									class="tm-form-control" placeholder="${updatetask.getDescription()}" required>
+									</textarea>
 								</div>
 								<div>
-									<button type="submit" class="tm-btn-primary tm-align-right">CREATE!</button>
+									<button type="submit" class="tm-btn-primary tm-align-right" name="ID" id="ID">UPDATE!</button>
 								</div>
 							</form>
+							</c:forEach>
 						</div>
 					</div>
 					<!-- End Update Task Page -->
@@ -221,6 +222,20 @@ https://www.tooplate.com/view/2121-wave-cafe
 
 	<script src="js/jquery-3.4.1.min.js"></script>
 	<script>
+
+	function copyText(num){
+		const h3Source=document.getElementById(num).querySelector("h3").innerText;
+		const due_date= document.getElementById(num).querySelector("h3").querySelector("span").innerText;
+		const description=document.getElementById(num).querySelector("p").innerText;
+
+		document.getElementById("title").value=h3Source.replace(due_date,"");
+		document.getElementById("due-date").value=due_date;
+		document.getElementById("description").value=description;
+	    document.getElementById("ID").value=num;
+		/*
+		document.getElementById("title").value=h3Source;
+		*/
+	}
 
     function setVideoSize() {
       const vidWidth = 1920;

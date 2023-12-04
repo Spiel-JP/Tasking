@@ -45,6 +45,7 @@ public class UpdateServlet extends HttpServlet {
 
 		//別サーブレットから情報渡し
 		User user = (User) request.getSession().getAttribute("user");
+		int id =Integer.parseInt(request.getParameter("ID"));
 		String title = request.getParameter("title");
 		int statasId = Integer.parseInt(request.getParameter("statusId"));
 
@@ -59,15 +60,14 @@ public class UpdateServlet extends HttpServlet {
 
 		TasksDAO dao = new TasksDAO();
 		Taskable task = Taskable.of(
-				dao.allSize(),
+				id,
 				user,
 				title,
 				description,
 				Status.numberToStatus(statasId),
 				Timestamp.valueOf(due_date).toLocalDateTime());
 		dao.update(task);
-		
-		
+		response.sendRedirect("/Tasking/home");
 	}
 
 }
