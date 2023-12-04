@@ -62,7 +62,6 @@ public final class HomeServlet extends HttpServlet {
 		Tasks tasks = new TasksDAO().fetchAll(user.getName());
 
 		//ステータスごとにフィルタリング→Listへ変更
-		request.setAttribute("allTasks", tasks.toList());
 		request.setAttribute("todoTasks", tasks.fillter(Status.TODO).toList());
 		request.setAttribute("doingTasks", tasks.fillter(Status.DOING).toList());
 		request.setAttribute("doneTasks", tasks.fillter(Status.DONE).toList());
