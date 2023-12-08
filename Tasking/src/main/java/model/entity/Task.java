@@ -15,7 +15,7 @@ public final class Task implements Taskable {
 	public static Taskable create(long id, User user, String title, String description, Status status,
 			LocalDateTime due_date) {
 		//creat条件クリア
-		if (id > 0 && user != null && title != null && description != null && status != null && due_date != null) {
+		if (id >= 0 && user != null && title != null && description != null && status != null && due_date != null) {
 			return new Task(id, user, title, description, status, due_date);
 		}
 		return Taskable.of(id, user, title, description, status, due_date);

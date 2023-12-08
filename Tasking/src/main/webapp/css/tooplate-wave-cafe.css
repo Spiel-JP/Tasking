@@ -209,7 +209,10 @@ h2 {
 }
 
 .tm-footer-link { color: white; }
-.tm-tab-content { animation: fadeEffect 1s; }
+.tm-tab-content {
+    animation: fadeEffect 1s;
+    overflow-x: auto; 
+}
 .tm-page-content { animation: fadeEffect 1s; }
 
 .tm-text-primary { 

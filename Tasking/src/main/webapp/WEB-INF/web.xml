@@ -49,4 +49,14 @@
     <servlet-name>ErrorServlet</servlet-name>
     <url-pattern>/ErrorServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TrashServlet</display-name>
+    <servlet-name>TrashServlet</servlet-name>
+    <servlet-class>controller.TrashServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TrashServlet</servlet-name>
+    <url-pattern>/TrashServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
