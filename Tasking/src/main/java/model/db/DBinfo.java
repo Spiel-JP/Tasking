@@ -2,7 +2,7 @@ package model.db;
 
 public enum DBinfo {
 	URL("jdbc:mysql://localhost:3306/mysql"), //
-	SCHEMA("crrs_001"), //
+	SCHEMA("ff"), //
 	USER("root"), //
 	PASS("password"), //
 	JDBC_DRIVER_NAME("com.mysql.cj.jdbc.Driver");

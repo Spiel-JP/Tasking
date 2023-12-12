@@ -45,7 +45,7 @@ public class UpdateServlet extends HttpServlet {
 
 		//別サーブレットから情報渡し
 		User user = (User) request.getSession().getAttribute("user");
-		int id =Integer.parseInt(request.getParameter("ID"));
+		int id = Integer.parseInt(request.getParameter("ID"));
 		String title = request.getParameter("title");
 		int statasId = Integer.parseInt(request.getParameter("statusId"));
 

@@ -59,4 +59,14 @@
     <servlet-name>TrashServlet</servlet-name>
     <url-pattern>/TrashServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ssssServlet</display-name>
+    <servlet-name>ssssServlet</servlet-name>
+    <servlet-class>controller.ssssServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ssssServlet</servlet-name>
+    <url-pattern>/ssssServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
